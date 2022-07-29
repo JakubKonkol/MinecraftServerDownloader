@@ -1,6 +1,6 @@
 # MinecraftServerDownloader
 
-Python script to automate procces of creating minecraft server <br> <br>
+Python script to automate procces of creating minecraft server <br> 
 script downloads jar file, automatically accept eula and creates start.bat <br>
 
 You need to install requests <br>
