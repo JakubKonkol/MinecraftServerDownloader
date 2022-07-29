@@ -3,7 +3,7 @@ import requests
 import shutil
 
 print("MinecraftServerDownloader")
-print("Author: Kanesa")
+print("Author: JakubKonkol")
 
 srvtype = input("What type of server you want to create? example: vannila, bukkit, spigot, paper: \n")
 version = input("What server version you want to use? example: 1.19, 1.8:\n")
