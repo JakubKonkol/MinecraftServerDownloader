@@ -8,6 +8,7 @@ print("Author: JakubKonkol")
 srvtype = input("What type of server you want to create? example: vannila, bukkit, spigot, paper: \n")
 version = input("What server version you want to use? example: 1.19, 1.8:\n")
 
+
 def download(url: str, dest_folder: str):
     if not os.path.exists(dest_folder):
         os.makedirs(dest_folder)
@@ -24,23 +25,22 @@ def download(url: str, dest_folder: str):
                     f.flush()
                     os.fsync(f.fileno())
     else:
-        raise Exception("Download failed")
+        raise RuntimeError("Download failed")
         pass
 
+
 def main():
-    DIRNAME="srv_"+srvtype+"_"+version;
-    print("creating directory "+DIRNAME+"...")
+    dirname = "srv_" + srvtype + "_" + version
+    print("creating directory " + dirname + "...")
     parent_dir = os.getcwd()
-    templates = parent_dir
-    path = os.path.join(parent_dir, DIRNAME)
+    path = os.path.join(parent_dir, dirname)
     source = parent_dir + '\\templates'
-    destination = path
-    shutil.copytree(source, destination)
-    print("Directory created at "+path)
-    url = "https://serverjars.com/api/fetchJar/"+srvtype+"/"+version
+    shutil.copytree(source, path)
+    print("Directory created at " + path)
+    url = "https://serverjars.com/api/fetchJar/" + srvtype + "/" + version
     try:
         download(url, path)
-    except:
+    except RuntimeError:
         print("There is a error when trying to download file...")
         print("Maybe there is no such server version?")
         shutil.rmtree(path)
@@ -50,11 +50,8 @@ def main():
         pass
 
 
-
-
-if(srvtype == "bukkit" or srvtype == "vanilla" or srvtype == "spigot" or srvtype == "paper"):
+if srvtype == "bukkit" or srvtype == "vanilla" or srvtype == "spigot" or srvtype == "paper":
     main()
 else:
     print("Provide correct server type! re-run the script")
     pass
-
