@@ -3,8 +3,10 @@
 Python script to automate procces of creating minecraft server <br> 
 script downloads jar file, automatically accept eula and creates start.bat <br>
 
-You need to install requests <br>
+<h3> How to use </h3> <br>
+1. download and install python3 from https://www.python.org/downloads/ <br>
+2. install requests module <br>
 ````
 pip install requests
 ````
-There could be some issues when trying to download server with type different than vanilla
+3.run MinecraftServerDownloader.py <br>
