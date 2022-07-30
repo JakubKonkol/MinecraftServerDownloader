@@ -10,9 +10,9 @@ version = input("What server version you want to use? example: 1.19, 1.8:\n")
 
 def download(url: str, dest_folder: str):
     if not os.path.exists(dest_folder):
-        os.makedirs(dest_folder)  # create folder if it does not exist
+        os.makedirs(dest_folder)
 
-    filename = "server.jar"  # be careful with file names
+    filename = "server.jar"
     file_path = os.path.join(dest_folder, filename)
     r = requests.get(url, stream=True)
     if r.ok:
@@ -23,8 +23,9 @@ def download(url: str, dest_folder: str):
                     f.write(chunk)
                     f.flush()
                     os.fsync(f.fileno())
-    else:  # HTTP status code 4XX/5XX
-        print("Download failed: status code {}\n{}".format(r.status_code, r.text))
+    else:
+        raise Exception("Download failed")
+        pass
 
 def main():
     DIRNAME="srv_"+srvtype+"_"+version;
@@ -37,10 +38,18 @@ def main():
     shutil.copytree(source, destination)
     print("Directory created at "+path)
     url = "https://serverjars.com/api/fetchJar/"+srvtype+"/"+version
-    download(url, path)
-    print("creating files to start the server....")
+    try:
+        download(url, path)
+    except:
+        print("There is a error when trying to download file...")
+        print("Maybe there is no such server version?")
+        shutil.rmtree(path)
+        input()
+    else:
+        print("DONE!")
+        pass
 
-    pass
+
 
 
 if(srvtype == "bukkit" or srvtype == "vanilla" or srvtype == "spigot" or srvtype == "paper"):
