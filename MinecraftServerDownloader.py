@@ -37,7 +37,7 @@ def main():
     source = parent_dir + '\\templates'
     shutil.copytree(source, path)
     print("Directory created at " + path)
-    url = "https://serverjars.com/api/fetchJar/" + srvtype + "/" + version
+    url = "https://serverjars.com/api/fetchJar/servers/" + srvtype + "/" + version
     try:
         download(url, path)
     except RuntimeError:
